@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= Rails.application.credentials.database[:name] %>
+  username: <%= Rails.application.credentials.database[:user] %>
+  password: <%= Rails.application.credentials.database[:password] %>
+  host: <%= Rails.application.credentials.database[:host] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: AwesomeCrm_test
+
+production:
+  <<: *default
